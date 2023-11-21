@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["node", "estree"]
+  },
+  "extends": "expo/tsconfig.base"
+}
