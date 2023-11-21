@@ -4,39 +4,32 @@ import { RoutesApi } from "../../models/routes.models"
 import { Text, View } from "react-native"
 import HeaderModule from "./header-module/HeaderModule"
 
-
 export default function Sales() {
-    const [active, setActive] = useState(true)
-    const [products, setData] = useState([])
-  //   const {data: products} = useSWR(`${RoutesApi.PRODUCTS}?status=${active}`)
-  // console.log(products)
-
-    // const [active, setActive] = useState(true)
-   
+    const [sales, setSales] = useState([])   
   
-    const fetchGetProducts = async () => {
+    const fetchGetSales = async () => {
       const response = await fetch(RoutesApi.SALES)
       const json = await response.json()
-      setData(json)
+      setSales(json)
     }
   
       useEffect(()=>{
-        fetchGetProducts()
+        fetchGetSales()
       }, [])
 
   return (
     <View>
       <HeaderModule/>
-      {products ? (Array.isArray(products) && products.map((product) => (
-        <View key={product.id}>
-            <Text>{product.client}</Text>
-            <Text>{product.invoice_number}</Text>
-            <Text>{product.sale_date}</Text>
-            <Text>{product.amount_order}</Text>
-            <Text>{product.total}</Text>
+      {sales ? (Array.isArray(sales) && sales.map((sale) => (
+        <View key={sale.id}>
+            <Text>{sale.client}</Text>
+            <Text>{sale.invoice_number}</Text>
+            <Text>{sale.sale_date}</Text>
+            <Text>{sale.amount_order}</Text>
+            <Text>{sale.total}</Text>
         </View>
   )
-  )):(<Text>Cargando productos...</Text>)
+  )):(<Text>Cargando información...</Text>)
   }
     </View>
   )
