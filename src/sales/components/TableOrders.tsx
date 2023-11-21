@@ -5,7 +5,7 @@ import { Text, View } from "react-native"
 import HeaderModule from "./header-module/HeaderModule"
 
 
-const TableOrders = () => {
+export default function Sales() {
     const [active, setActive] = useState(true)
     const [products, setData] = useState([])
   //   const {data: products} = useSWR(`${RoutesApi.PRODUCTS}?status=${active}`)
@@ -41,5 +41,3 @@ const TableOrders = () => {
     </View>
   )
 }
-
-export default TableOrders

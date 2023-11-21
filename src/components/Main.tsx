@@ -1,15 +1,13 @@
 import React from "react"
 import { Text, View } from "react-native"
 import Constants from 'expo-constants'
-import TableOrders from "../sales/components/TableOrders"
+import Sales from "../sales/components/TableOrders"
 
-const Main = () => {
+export default function Main(){
     return(
         <View style={{marginTop:Constants.statusBarHeight, flexGrow: 1 }}>
             <Text>Hola, desde main</Text>
-            <TableOrders/>
+            <Sales/>
         </View>
     )
 }
-
-export default Main

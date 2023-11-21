@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from 'native-base'
 import { View } from 'react-native'
 
-const HeaderModule = () => {
+export default function HeaderModule() {
   return (
     <View >
       <Text fontSize="3xl" >Ventas</Text>
@@ -10,7 +10,5 @@ const HeaderModule = () => {
     </View>
   )
 }
-
-export default HeaderModule
 
 // scroll-m-20 text-3xl font-extrabold tracking-tight transition-colors first:mt-0
