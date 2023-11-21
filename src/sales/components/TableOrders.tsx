@@ -1,9 +1,8 @@
 'use client'
 import React, {useState, useEffect} from "react"
 import { RoutesApi } from "../../models/routes.models"
-import useSWR from "swr"
 import { Text, View } from "react-native"
-import { Product } from "../../models/productsModels"
+import HeaderModule from "./header-module/HeaderModule"
 
 
 const TableOrders = () => {
@@ -27,6 +26,7 @@ const TableOrders = () => {
 
   return (
     <View>
+      <HeaderModule/>
       {products ? (Array.isArray(products) && products.map((product) => (
         <View key={product.id}>
             <Text>{product.client}</Text>
