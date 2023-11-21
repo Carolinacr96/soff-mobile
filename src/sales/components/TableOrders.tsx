@@ -1,9 +1,9 @@
 'use client'
 import React, {useState, useEffect} from "react"
-import { RoutesApi } from "../models/routes.models"
+import { RoutesApi } from "../../models/routes.models"
 import useSWR from "swr"
 import { Text, View } from "react-native"
-import { Product } from "../models/productsModels"
+import { Product } from "../../models/productsModels"
 
 
 const TableOrders = () => {
@@ -16,7 +16,7 @@ const TableOrders = () => {
    
   
     const fetchGetProducts = async () => {
-      const response = await fetch(`${RoutesApi.PRODUCTS}?status=${active}`)
+      const response = await fetch(RoutesApi.SALES)
       const json = await response.json()
       setData(json)
     }
@@ -29,7 +29,11 @@ const TableOrders = () => {
     <View>
       {products ? (Array.isArray(products) && products.map((product) => (
         <View key={product.id}>
-            <Text>{product.name}</Text>
+            <Text>{product.client}</Text>
+            <Text>{product.invoice_number}</Text>
+            <Text>{product.sale_date}</Text>
+            <Text>{product.amount_order}</Text>
+            <Text>{product.total}</Text>
         </View>
   )
   )):(<Text>Cargando productos...</Text>)

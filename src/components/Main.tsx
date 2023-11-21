@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View } from "react-native"
 import Constants from 'expo-constants'
-import TableOrders from "../sales/TableOrders"
+import TableOrders from "../sales/components/TableOrders"
 
 const Main = () => {
     return(
