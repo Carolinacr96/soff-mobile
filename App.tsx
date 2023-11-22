@@ -1,6 +1,6 @@
 import React from 'react'
 import Main from './src/components/Main'
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider, View } from 'native-base';
 
 export default function App() {
   return (
@@ -8,5 +8,4 @@ export default function App() {
       <Main/>
     </NativeBaseProvider>
   )
-  
 }
