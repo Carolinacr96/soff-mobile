@@ -1,6 +1,4 @@
-// import React from 'react'
 import { Text, View } from 'native-base'
-// import {  } from 'react-native'
 
 export default function HeaderModule() {
   return (
