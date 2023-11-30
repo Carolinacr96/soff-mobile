@@ -1,4 +1,18 @@
 import Sales from "../sales/components/table-sales/TableOrders"
+import { View } from "native-base"
+import { ViewBase } from 'react-native'
+import Login from '../Login/Login'
+
+export default function Main(){
+    return(
+        // <View style={{marginTop:Constants.statusBarHeight, flexGrow: 1 }}>
+        //     <Sales/>
+        // </View>
+        <View>
+            <Login/>
+        </View>
+    )
+}
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { BoxPurchases } from "../purchases/components/table-purchases/BoxPurchases";
