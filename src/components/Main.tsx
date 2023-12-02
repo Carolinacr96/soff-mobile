@@ -6,6 +6,10 @@ import { SeeDetail } from "../purchases/components/see-detail/SeeDetail";
 import { SeeDetailSale } from '../sales/see-detail/SeeDetailSale';
 import { createStackNavigator } from '@react-navigation/stack';
 import HeaderModule from "../dashboard/components/header-module/HeaderModule";
+import FormLogin from '../auth/login/components/form/FormLogin'
+import FormRecovery from '../auth/recovery-password/components/form-recovery/FormRecovery'
+import FormConfirm from '../auth/confirm-recover/components/form-confirm/FormConfirm'
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -15,6 +19,30 @@ function ComprasStack() {
     <Stack.Navigator>
       <Stack.Screen name="Compras" component={BoxPurchases}/>
       <Stack.Screen name="SeeDetail" component={SeeDetail} options={{ title: 'Detalle' }}/>
+    </Stack.Navigator>
+  );
+ }
+
+ function loginStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={FormLogin}/>
+    </Stack.Navigator>
+  );
+ }
+
+ function confirmStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Confirm" component={FormConfirm}/>
+    </Stack.Navigator>
+  );
+ }
+
+ function recoveryStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Recovery" component={FormRecovery}/>
     </Stack.Navigator>
   );
  }
@@ -47,7 +75,20 @@ export default function Main() {
         iconName = focused
           ? 'cart'
           : 'cart-outline';
+      } else if (route.name === 'Login'){
+        iconName = focused
+          ? 'cart'
+          : 'cart-outline';
+      } else if (route.name === 'Recovery'){
+        iconName = focused
+          ? 'cart'
+          : 'cart-outline';
+      } else if (route.name === 'Confirm'){
+        iconName = focused
+          ? 'cart'
+          : 'cart-outline';
       }
+      
 
       return <Ionicons name={iconName} size={size} color={color} />;
     },
@@ -64,6 +105,9 @@ export default function Main() {
   <Tab.Screen name="Dashboard" component={HeaderModule} />
   <Tab.Screen name="Ventas" component={SaleStack} options={{ headerShown: false }} />
   <Tab.Screen name="Compras" component={ComprasStack} options={{ headerShown: false }}/>
+  <Tab.Screen name="Login" component={loginStack} options={{ headerShown: false }}/>
+  <Tab.Screen name="Recovery" component={recoveryStack} options={{ headerShown: false }}/>
+  <Tab.Screen name="Confirm" component={confirmStack} options={{ headerShown: false }}/>
   </Tab.Navigator>
 
  );
