@@ -1,8 +1,9 @@
-import Sales from "../sales/components/table-sales/TableOrders"
+import { BoxSales } from '../sales/components/table-sales/BoxSales';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { BoxPurchases } from "../purchases/components/table-purchases/BoxPurchases";
 import { SeeDetail } from "../purchases/components/see-detail/SeeDetail";
+import { SeeDetailSale } from '../sales/see-detail/SeeDetailSale';
 import { createStackNavigator } from '@react-navigation/stack';
 import HeaderModule from "../dashboard/components/header-module/HeaderModule";
 
@@ -17,6 +18,15 @@ function ComprasStack() {
     </Stack.Navigator>
   );
  }
+
+ function SaleStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Ventas" component={BoxSales}/>
+      <Stack.Screen name="SeeDetailSale" component={SeeDetailSale} options={{ title: 'Detalle' }}/>
+    </Stack.Navigator>
+  );
+ } 
 
 export default function Main() {
  return (
@@ -52,7 +62,7 @@ export default function Main() {
   })}
   >
   <Tab.Screen name="Dashboard" component={HeaderModule} />
-  <Tab.Screen name="Ventas" component={Sales} />
+  <Tab.Screen name="Ventas" component={SaleStack} options={{ headerShown: false }} />
   <Tab.Screen name="Compras" component={ComprasStack} options={{ headerShown: false }}/>
   </Tab.Navigator>
 
