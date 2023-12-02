@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import {
-  Center,
-  Box,
-  Heading,
-  VStack,
-  FormControl,
-  Input,
-  Link,
-  Button,
-  Text,
-} from "native-base";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
 const FormConfirm = () => {
   const [code, setCode] = useState("");
@@ -30,62 +20,115 @@ const FormConfirm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center py-10">
-      <div className="w-full md:w-[400px] p-4">
-        <div className="space-y-3">
-          <Heading
-            size="2xl"
-            fontWeight="bold"
-            color="neutral.900"
-            textAlign="center"
-          >
-            ¡Código de Confirmación! 🔐
-          </Heading>
-          <Text
-            fontSize="sm"
-            color="neutral.500"
-            textAlign="center"
-            mb="5"
-          >
-            Ingresa el código de confirmación que recibiste por correo electrónico.
+    <View style={styles.container}>
+      <View style={styles.spaceY3}>
+        <Text style={styles.heading}>
+          ¡Código de Confirmación! 🔐
+        </Text>
+        <Text style={styles.description}>
+          Ingresa el código de confirmación que recibiste por correo electrónico.
+        </Text>
+      </View>
+      <View style={styles.box}>
+        <View style={styles.vStack}>
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Código</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Ingrese el código"
+              value={code}
+              onChangeText={(value) => setCode(value)}
+            />
+            {error !== "" && (
+              <Text style={styles.errorText}>{error}</Text>
+            )}
+          </View>
+
+          <TouchableOpacity style={styles.button} onPress={onSubmit}>
+            <Text style={styles.buttonText}>Confirmar Código</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.bottomText}>
+            ¡No me ha llegado un código!{" "}
+            <Text style={styles.link} onPress={() => {}}>
+              Volver a intentar
+            </Text>
           </Text>
-        </div>
-        <Center w="100%" h="100%">
-          <Box safeArea p="2" py="8" w="90%" maxW="290">
-            <VStack space={3} mt="5">
-              <FormControl isInvalid={error !== ""}>
-                <FormControl.Label>Código</FormControl.Label>
-                <Input
-                  placeholder="Ingrese el código"
-                  value={code}
-                  onChangeText={(value) => setCode(value)}
-                />
-                <Text fontSize="xs" color="red.500">
-                  {error}
-                </Text>
-              </FormControl>
-
-              <Button mt="2" colorScheme="indigo" onPress={onSubmit}>
-                Confirmar Código
-              </Button>
-
-              <Text
-                mt="2"
-                fontSize="sm"
-                color="coolGray.600"
-                textAlign="center"
-              >
-                ¡No me ha llegado un código!{" "}
-                <Link color="indigo.500" onPress={() => {}}>
-                  Volver a intentar
-                </Link>
-              </Text>
-            </VStack>
-          </Box>
-        </Center>
-      </div>
-    </div>
+        </View>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+  },
+  spaceY3: {
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#1a202c",
+  },
+  description: {
+    fontSize: 14,
+    color: "#718096",
+    textAlign: "center",
+  },
+  box: {
+    padding: 16,
+    width: "90%",
+    maxWidth: 290,
+  },
+  vStack: {
+    marginTop: 20,
+  },
+  formControl: {
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 14,
+    color: "#4a5568",
+    marginBottom: 5,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#cbd5e0",
+    borderRadius: 8,
+    padding: 10,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginTop: 5,
+  },
+  button: {
+    backgroundColor: "#5c6bc0",
+    padding: 15,
+    borderRadius: 8,
+    width: "100%",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  bottomText: {
+    marginTop: 20,
+    textAlign: "center",
+  },
+  link: {
+    color: "#5c6bc0",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+});
 
 export default FormConfirm;

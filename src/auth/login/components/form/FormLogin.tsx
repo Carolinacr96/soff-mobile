@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import {
-  Center,
-  Box,
-  Heading,
-  VStack,
-  FormControl,
-  Input,
-  Link,
-  Button,
+  View,
   Text,
-} from "native-base";
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 
 interface FormData {
   email?: string;
@@ -69,82 +65,105 @@ export default function FormLogin() {
   };
 
   return (
-    <Center w="100%" h="100%">
-      <Box safeArea p="2" py="8" w="90%" maxW="290">
-        <Heading
-          size="3xl"
-          fontWeight="600"
-          color="coolGray.800"
-          style={{
-            textAlign: "center",
-            marginBottom: 40,
-          }}
-        >
-          SOFF
-        </Heading>
-
-        <Heading
-          mt="1"
-          color="coolGray.600"
-          fontWeight="medium"
-          size="xs"
-        >
-          Bienvenido de nuevo. ¡Buena suerte en tus ventas hoy!
-        </Heading>
-
-        <VStack space={3} mt="5">
-          <FormControl isInvalid={"email" in errors}>
-            <FormControl.Label>Correo</FormControl.Label>
-            <Input
-              onChangeText={(value) => setData({ ...formData, email: value })}
-              onBlur={validateEmail}
-            />
-            <Text fontSize="xs" color="red.500">
-              {errors.email}
-            </Text>
-          </FormControl>
-
-          <FormControl isInvalid={"password" in errors}>
-            <FormControl.Label>Contraseña</FormControl.Label>
-            <Input
-              type="password"
-              onChangeText={(value) =>
-                setData({ ...formData, password: value })
-              }
-              onBlur={validatePassword}
-            />
-            <Link
-              _text={{
-                fontSize: "xs",
-                fontWeight: "500",
-                color: "indigo.500",
-              }}
-              alignSelf="flex-end"
-              mt="1"
-            >
-              ¿Has olvidado tu contraseña?
-            </Link>
-            <Text fontSize="xs" color="red.500">
-              {errors.password}
-            </Text>
-          </FormControl>
-
-          <Button
-            mt="2"
-            colorScheme="indigo"
-            onPress={() => {
-              if (validateForm()) {
-                // Coloca aquí el código para enviar los datos al servidor
-                // y realizar la autenticación
-              }
-            }}
-          >
-            Iniciar sesión
-          </Button>
-        </VStack>
-      </Box>
-    </Center>
+    <View style={styles.container}>
+      <Text style={styles.logo}>SOFF</Text>
+      <Text style={styles.welcomeText}>
+        Bienvenido de nuevo. ¡Buena suerte en tus ventas hoy!
+      </Text>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Correo"
+          onChangeText={(value) => setData({ ...formData, email: value })}
+          onBlur={validateEmail}
+        />
+        {errors.email && (
+          <Text style={styles.errorText}>{errors.email}</Text>
+        )}
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Contraseña"
+          secureTextEntry
+          onChangeText={(value) => setData({ ...formData, password: value })}
+          onBlur={validatePassword}
+        />
+        {errors.password && (
+          <Text style={styles.errorText}>{errors.password}</Text>
+        )}
+      </View>
+      <TouchableOpacity
+        style={styles.loginButton}
+        onPress={() => {
+          if (validateForm()) {
+            // Coloca aquí el código para enviar los datos al servidor
+            // y realizar la autenticación
+          }
+        }}
+      >
+        <Text style={styles.loginButtonText}>Iniciar sesión</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.forgotPasswordLink}>
+        <Text style={styles.forgotPasswordText}>
+          ¿Has olvidado tu contraseña?
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
-};
+}
 
-// export default Login;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+  },
+  logo: {
+    fontSize: 36,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  welcomeText: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  inputContainer: {
+    width: "100%",
+    marginBottom: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    padding: 10,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginTop: 5,
+  },
+  loginButton: {
+    backgroundColor: "#5c6bc0",
+    padding: 15,
+    borderRadius: 8,
+    width: "100%",
+    alignItems: "center",
+  },
+  loginButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  forgotPasswordLink: {
+    marginTop: 20,
+  },
+  forgotPasswordText: {
+    color: "#5c6bc0",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+});
