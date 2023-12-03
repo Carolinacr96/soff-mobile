@@ -21,7 +21,8 @@ export  function HeaderModuleDetail() {
 const styles = StyleSheet.create({
   container: {
     width:320,
-    height:100
+    height:100,
+    marginTop:10
   },
   title:{
     fontWeight:'bold',
