@@ -1,46 +1,43 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-const FormRecovery = () => {
-  const [email, setEmail] = useState("");
+const FormConfirm = () => {
+  const [code, setCode] = useState("");
   const [error, setError] = useState("");
 
   const onSubmit = async () => {
-    // Validar el correo electrónico antes de enviar la solicitud
-    if (!validateEmail(email)) {
-      setError("Ingresa una dirección de correo electrónico válida.");
+    // Validar el código antes de enviar la solicitud
+    if (!code.trim()) {
+      setError("Por favor, completa este campo.");
       return;
     }
 
-    // Realizar la lógica para enviar el código de recuperación al correo electrónico
+    // Realizar la lógica para confirmar el código de recuperación
     // ...
 
     // Limpiar el error después de un envío exitoso
     setError("");
   };
 
-  const validateEmail = (value) => {
-    // Validación de correo electrónico
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(value);
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.spaceY3}>
         <Text style={styles.heading}>
-          SOFF
+          ¡Código de Confirmación! 🔐
+        </Text>
+        <Text style={styles.description}>
+          Ingresa el código de confirmación que recibiste por correo electrónico.
         </Text>
       </View>
       <View style={styles.box}>
         <View style={styles.vStack}>
           <View style={styles.formControl}>
-            <Text style={styles.label}>Correo</Text>
+            <Text style={styles.label}>Código</Text>
             <TextInput
               style={styles.input}
-              placeholder="Ingrese su correo"
-              value={email}
-              onChangeText={(value) => setEmail(value)}
+              placeholder="Ingrese el código"
+              value={code}
+              onChangeText={(value) => setCode(value)}
             />
             {error !== "" && (
               <Text style={styles.errorText}>{error}</Text>
@@ -48,13 +45,13 @@ const FormRecovery = () => {
           </View>
 
           <TouchableOpacity style={styles.button} onPress={onSubmit}>
-            <Text style={styles.buttonText}>Enviar Código</Text>
+            <Text style={styles.buttonText}>Confirmar Código</Text>
           </TouchableOpacity>
 
           <Text style={styles.bottomText}>
-            ¡Ya me acuerdo!{" "}
+            ¡No me ha llegado un código!{" "}
             <Text style={styles.link} onPress={() => {}}>
-              Iniciar sesión
+              Volver a intentar
             </Text>
           </Text>
         </View>
@@ -76,8 +73,13 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 24,
-    fontWeight: "600",
+    fontWeight: "bold",
     color: "#1a202c",
+  },
+  description: {
+    fontSize: 14,
+    color: "#718096",
+    textAlign: "center",
   },
   box: {
     padding: 16,
@@ -129,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FormRecovery;
+export default FormConfirm;
