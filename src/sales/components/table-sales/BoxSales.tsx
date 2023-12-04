@@ -48,7 +48,7 @@ export const BoxSales = () => {
         <Text>No se encontraron resultados</Text>
       ):(
           filterSales.length === 0 ? (
-            <Text>No se encontraró <strong>{searchData}</strong></Text>
+            <Text>No se encontró <strong>{searchData}</strong></Text>
           ):(
             filterSales.map((sale) => (
               <TouchableOpacity onPress={() => handleSaleClick(sale.id)}>
