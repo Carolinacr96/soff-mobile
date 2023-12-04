@@ -95,10 +95,21 @@ export default function FormLogin() {
       </View>
       <TouchableOpacity
         style={styles.loginButton}
-        onPress={() => {
+        onPress={async () => {
           if (validateForm()) {
-            // Coloca aquí el código para enviar los datos al servidor
-            // y realizar la autenticación
+            
+            console.log({username:formData.email, password:formData.password})
+            const response = await fetch('http://localhost:8000/auth/login', {
+              headers: {
+                "accept": "application/json",
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              method: "POST",
+              body: `${encodeURIComponent('username')}=${encodeURIComponent(formData.email)}&${encodeURIComponent('password')}=${encodeURIComponent(formData.password)}`
+            
+            }).then(res => res.json())
+            console.log(response)
+
           }
         }}
       >
