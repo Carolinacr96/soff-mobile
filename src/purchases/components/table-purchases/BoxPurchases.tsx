@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react"
 import { useNavigation } from '@react-navigation/native';
 import { BoxPurchasesNavigationProp } from "./RootStackParamList";
 import { RoutesApi } from "../../../models/routes.models"
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, ScrollView, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { format } from 'date-fns';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderModule from "../header-module/HeaderModule";
@@ -36,7 +36,8 @@ export const BoxPurchases = () => {
   );
   
 
-  return <View  style={styles.container}>
+  return <ScrollView>
+  <View  style={styles.container}>
       <HeaderModule/>
       <TextInput
       placeholder="Buscar por proveedor..."
@@ -73,13 +74,14 @@ export const BoxPurchases = () => {
         )
       }
 </View>
+  </ScrollView>
 }
 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     alignItems: 'center',
   },
   box :{

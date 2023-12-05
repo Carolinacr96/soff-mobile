@@ -1,16 +1,19 @@
 'use client'
-import { Text, StyleSheet,View } from 'react-native'
+import { Text, StyleSheet,View, ScrollView } from 'react-native'
 import HeaderModule from '../header-module/HeaderModule'
 import { Target } from '../targets/Target'
-
+import LineSales from '../LineSales/LineSales'
 export default function BoxDashboard() {
   return (
+    <ScrollView>
     <View style={styles.container}>
       <HeaderModule/>
       <View style={styles.box}>
         <Target/>
       </View>
+  <LineSales/>
     </View>
+    </ScrollView>
   )
 }
 

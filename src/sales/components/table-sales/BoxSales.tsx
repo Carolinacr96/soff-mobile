@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { BoxSalesNavigationProp } from "./RootStackParamList";
 import { RoutesApi } from "../../../models/routes.models"
 import HeaderModule from "../header-module/HeaderModule";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, ScrollView, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { format } from 'date-fns';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -35,7 +35,8 @@ export const BoxSales = () => {
     sale.invoice_number.toLowerCase().includes(searchData.toLowerCase())
   );
 
-  return <View style={styles.container}>
+  return <ScrollView>
+  <View style={styles.container}>
     <HeaderModule/>
     <TextInput
       placeholder="Buscar número de factura..."
@@ -72,6 +73,7 @@ export const BoxSales = () => {
         )
       }
   </View>
+</ScrollView>
 }
 
 const styles = StyleSheet.create({
