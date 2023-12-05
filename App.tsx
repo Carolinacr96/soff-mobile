@@ -6,9 +6,7 @@ import { NativeBaseProvider, View } from 'native-base';
 export default function App() {
  return (
    <NavigationContainer>
-    <NativeBaseProvider>
      <Main />
-    </NativeBaseProvider>
    </NavigationContainer>
  );
 }

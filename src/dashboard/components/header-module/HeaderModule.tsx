@@ -4,7 +4,7 @@ export default function HeaderModule() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Dashboard</Text>
-      <Text style={styles.title}>¡Aquí verás estadisticas rapidas del aplicativo!</Text>
+      <Text style={styles.text}>¡Aquí verás estadisticas rapidas del aplicativo!</Text>
     </View>
   )
 }

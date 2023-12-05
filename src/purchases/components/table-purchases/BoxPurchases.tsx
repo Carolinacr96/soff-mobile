@@ -72,27 +72,6 @@ export const BoxPurchases = () => {
           )
         )
       }
-        {/* <Flex direction="row" h="58" alignItems="center">
-          <Flex direction="column" h="58" p="2" pt="2">
-            <Text bold color="gray.500"
-            fontSize="xs">Proveedor: {purchase.provider}</Text>
-            <Text bold color="gray.500" fontSize="xs">Factura: {purchase.invoice_number}</Text>
-            <Text bold color="gray.500" fontSize="xs">Fecha: {format(new Date(purchase.purchase_date), 'dd-MM-yyyy').replace(/-/g, '/')}</Text>
-          </Flex>
-
-          <Flex direction="column" h="58" p="2" pt="6" marginRight="5px">
-            <Text bold color="gray.500" fontSize="xs">Ordenes: {purchase.amount_order}</Text>
-            <Text bold color="gray.500" fontSize="xs">Total: ${purchase.total.toLocaleString('en-US')}</Text>
-          </Flex>
-
-          <Ionicons name="ios-arrow-forward" size={18} color="gray" marginRight="10px"/>
-      </Flex>
-
-    </Box>
-    </TouchableOpacity>
-    )
-    )):(<Text>Cargando información...</Text>)
-    } */}
 </View>
 }
 
@@ -128,9 +107,7 @@ const styles = StyleSheet.create({
   flex1:{
     flexDirection:"column",
     margin: 10,
-
-    marginRight: 0,
-    width:200
+    width:170
   },
   icon:{
     paddingTop: 25,

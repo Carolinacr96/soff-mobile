@@ -5,7 +5,8 @@ import { BoxPurchases } from "../purchases/components/table-purchases/BoxPurchas
 import { SeeDetail } from "../purchases/components/see-detail/SeeDetail";
 import { SeeDetailSale } from '../sales/see-detail/SeeDetailSale';
 import { createStackNavigator } from '@react-navigation/stack';
-import HeaderModule from "../dashboard/components/header-module/HeaderModule";
+// import HeaderModule from "../dashboard/components/header-module/HeaderModule";
+import BoxDashboard from '../dashboard/components/table-dashboard/BoxDashboard';
 import FormLogin from '../auth/login/components/form/FormLogin'
 import FormRecovery from '../auth/recovery-password/components/form-recovery/FormRecovery'
 import FormConfirm from '../auth/confirm-recover/components/form-confirm/FormConfirm'
@@ -102,7 +103,7 @@ export default function Main() {
     tabBarShowLabel: false,
   })}
   >
-  <Tab.Screen name="Dashboard" component={HeaderModule} />
+  <Tab.Screen name="Dashboard" component={BoxDashboard} />
   <Tab.Screen name="Ventas" component={SaleStack} options={{ headerShown: false }} />
   <Tab.Screen name="Compras" component={ComprasStack} options={{ headerShown: false }}/>
   <Tab.Screen name="Login" component={loginStack} options={{ headerShown: false }}/>
