@@ -18,8 +18,8 @@ export default function LineSales() {
   }, [])
 
   const allMonths = useMemo(() => [
-    'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-    'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+    'Ene.', 'Feb.', 'Mar.', 'Abr.', 'May.', 'Jun.',
+    'Jul.', 'Ago.', 'Sep.', 'Oct.', 'Nov.', 'Dic.'
   ], []);
 
   const [chartData, setChartData] = useState({
