@@ -11,7 +11,7 @@ export default function BoxDashboard() {
       <View style={styles.box}>
         <Target/>
       </View>
-  <LineSales/>
+      <LineSales/>
     </View>
     </ScrollView>
   )

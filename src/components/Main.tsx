@@ -24,7 +24,7 @@ function ComprasStack() {
   );
  }
 
- function loginStack() {
+ function LoginStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={FormLogin}/>
@@ -32,7 +32,7 @@ function ComprasStack() {
   );
  }
 
- function confirmStack() {
+ function ConfirmStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Confirm" component={FormConfirm}/>
@@ -40,7 +40,7 @@ function ComprasStack() {
   );
  }
 
- function recoveryStack() {
+ function RecoveryStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Recovery" component={FormRecovery}/>
@@ -106,9 +106,9 @@ export default function Main() {
   <Tab.Screen name="Dashboard" component={BoxDashboard} />
   <Tab.Screen name="Ventas" component={SaleStack} options={{ headerShown: false }} />
   <Tab.Screen name="Compras" component={ComprasStack} options={{ headerShown: false }}/>
-  <Tab.Screen name="Login" component={loginStack} options={{ headerShown: false }}/>
-  <Tab.Screen name="Recovery" component={recoveryStack} options={{ headerShown: false }}/>
-  <Tab.Screen name="Confirm" component={confirmStack} options={{ headerShown: false }}/>
+  <Tab.Screen name="Login" component={LoginStack} options={{ headerShown: false }}/>
+  <Tab.Screen name="Recovery" component={RecoveryStack} options={{ headerShown: false }}/>
+  <Tab.Screen name="Confirm" component={ConfirmStack} options={{ headerShown: false }}/>
   </Tab.Navigator>
 
  );

@@ -2,6 +2,7 @@ import { LineChart } from 'react-native-chart-kit'
 import { RoutesApi } from '../../../models/routes.models'
 import React, {useEffect, useState, useMemo} from 'react'
 import { View, StyleSheet, Text } from 'react-native'
+import { Picker } from '@react-native-picker/picker';
 
 export default function LineSales() {
   const [sales, setSales] = useState([])
@@ -35,8 +36,7 @@ export default function LineSales() {
       sales.filter((sale:any) => sale.Year === selectedYear)
       .forEach((sale:any) => {
         const monthIndex = allMonths.indexOf(sale.Month);
-        filledData[monthIndex] = sale.Total_Sales;
-      });
+        filledData[monthIndex] = sale.Total_Sales})
   
       setChartData({
         labels: allMonths,
@@ -46,7 +46,6 @@ export default function LineSales() {
       });
     }
   }, [sales, allMonths, selectedYear]);
-
   return(
     <View style={styles.container}>
     <View style={styles.title}>
@@ -54,21 +53,18 @@ export default function LineSales() {
         <Text style={styles.text}>Total Ventas {selectedYear}</Text>
       </View>
       <View style={styles.select}>
-        <select
-          id="yearSelector"
-          value={selectedYear}
-          onChange={(e) => setSelectedYear(Number(e.target.value))}
+        <Picker
+          selectedValue={selectedYear}
+          onValueChange={((e) => setSelectedYear(Number(e)))}
           style={styles.selectYear}
         >
           {Array.from({ length: 5 }, (_, index) => new Date().getFullYear() - index).map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
+            <Picker.Item key={year} label={year.toString()} value={year} />
           ))}
-        </select>
+        </Picker>
       </View>
     </View>
-    <div>
+    <View>
     <LineChart
       data={chartData}
       width={350}
@@ -87,7 +83,7 @@ export default function LineSales() {
       }}
       bezier
     />
-    </div>
+    </View>
   </View>
   )
 }
