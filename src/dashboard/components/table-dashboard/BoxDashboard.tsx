@@ -3,16 +3,19 @@ import { Text, StyleSheet,View, ScrollView } from 'react-native'
 import HeaderModule from '../header-module/HeaderModule'
 import { Target } from '../targets/Target'
 import LineSales from '../LineSales/LineSales'
+import ChartSale from '../chart-sales/ChartSale'
+
 export default function BoxDashboard() {
   return (
     <ScrollView>
-    <View style={styles.container}>
-      <HeaderModule/>
-      <View style={styles.box}>
-        <Target/>
+      <View style={styles.container}>
+        <HeaderModule/>
+        <View style={styles.box}>
+          <Target/>
+        </View>
+        <LineSales/>
+        <ChartSale/>
       </View>
-  <LineSales/>
-    </View>
     </ScrollView>
   )
 }
@@ -27,10 +30,7 @@ const styles = StyleSheet.create({
     margin:2,
     width:320,
     backgroundColor:"white",
-    // borderRadius:10,
     height:'auto',
-    // borderWidth:1,
-    // borderColor:"#687990", 
     marginBottom: 10,
     flexDirection:"row"
   },
