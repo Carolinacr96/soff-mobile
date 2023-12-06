@@ -10,7 +10,9 @@ import BoxDashboard from '../dashboard/components/table-dashboard/BoxDashboard';
 import FormLogin from '../auth/login/components/form/FormLogin'
 import FormRecovery from '../auth/recovery-password/components/form-recovery/FormRecovery'
 import FormConfirm from '../auth/confirm-recover/components/form-confirm/FormConfirm'
-
+import Navbar from './navbar/Navbar';
+import React from 'react';
+import { Notifications } from './notifications/components/table-notifications/Notifications';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,8 +20,8 @@ const Tab = createBottomTabNavigator();
 function ComprasStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Compras" component={BoxPurchases}/>
-      <Stack.Screen name="SeeDetail" component={SeeDetail} options={{ title: 'Detalle' }}/>
+      <Stack.Screen name="Compras" component={BoxPurchases} options={{ headerShown: false }}/>
+      <Stack.Screen name="SeeDetail" component={SeeDetail} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
  }
@@ -27,7 +29,7 @@ function ComprasStack() {
  function LoginStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={FormLogin}/>
+      <Stack.Screen name="Login" component={FormLogin} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
  }
@@ -35,7 +37,7 @@ function ComprasStack() {
  function ConfirmStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Confirm" component={FormConfirm}/>
+      <Stack.Screen name="Confirm" component={FormConfirm} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
  }
@@ -43,7 +45,7 @@ function ComprasStack() {
  function RecoveryStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Recovery" component={FormRecovery}/>
+      <Stack.Screen name="Recovery" component={FormRecovery} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
  }
@@ -51,15 +53,28 @@ function ComprasStack() {
  function SaleStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Ventas" component={BoxSales}/>
-      <Stack.Screen name="SeeDetailSale" component={SeeDetailSale} options={{ title: 'Detalle' }}/>
+      <Stack.Screen name="Ventas" component={BoxSales} options={{ headerShown: false }}/>
+      <Stack.Screen name="SeeDetailSale" component={SeeDetailSale} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
  } 
 
-export default function Main() {
- return (
-  <Tab.Navigator
+ export default function Main() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="MainTabs"
+        component={MainTabs}
+        options={{ headerTitle: () => <Navbar /> 
+      }}
+      />
+      <Stack.Screen name="Notifications" component={Notifications} options={{title:'Notificaciones'}}/>
+    </Stack.Navigator>
+  );
+}
+
+ function MainTabs() {
+ return (<Tab.Navigator
   screenOptions={({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
       let iconName;
@@ -103,14 +118,13 @@ export default function Main() {
     tabBarShowLabel: false,
   })}
   >
-  <Tab.Screen name="Dashboard" component={BoxDashboard} />
+  <Tab.Screen name="Dashboard" component={BoxDashboard} options={{ headerShown: false }}/>
   <Tab.Screen name="Ventas" component={SaleStack} options={{ headerShown: false }} />
   <Tab.Screen name="Compras" component={ComprasStack} options={{ headerShown: false }}/>
   <Tab.Screen name="Login" component={LoginStack} options={{ headerShown: false }}/>
   <Tab.Screen name="Recovery" component={RecoveryStack} options={{ headerShown: false }}/>
   <Tab.Screen name="Confirm" component={ConfirmStack} options={{ headerShown: false }}/>
   </Tab.Navigator>
-
  );
 }
 
