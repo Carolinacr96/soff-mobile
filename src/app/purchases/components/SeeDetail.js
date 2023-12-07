@@ -36,8 +36,8 @@ export const SeeDetailPurchase = ({route}) => {
               </View>
 
                 <View style={styles.flex}>
-                  {/* <Text style={styles.text}>Precio: {order.price_supplies.toLocaleString('en-US')}</Text>
-                  <Text style={styles.text}>Total: {order.subtotal.toLocaleString('en-US')}</Text> */}
+                  <Text style={styles.text}>Precio: {order.price_supplies.toLocaleString('en-US')}</Text>
+                  <Text style={styles.text}>Total: {order.subtotal.toLocaleString('en-US')}</Text>
                 </View>
             </View>
           ))) : (<Text>Cargando información...</Text>)

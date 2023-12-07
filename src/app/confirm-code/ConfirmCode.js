@@ -45,10 +45,10 @@ export default function ConfirmCode({navigation}) {
             >
                 {({handleBlur, handleChange, handleSubmit, values, errors, touched}) => (
                     <View>
-                        <View style={styles.controls}>
+                        <View style={error ? styles.controls: {display:'none'}}>
                             <Text style={{color: 'red', fontStyle: 'italic', fontSize: 12}}>{getValidationErrors(error) ? getValidationErrors(error).message : ''}</Text>
                         </View>
-                        <View style={styles.controls}>
+                        <View style={success === true ? styles.controls : {display:'none'}}>
                             <Text style={{color: 'green', fontSize: 12}}>{success ? 'Se ha confirmado el codigo correctamente!': ''}</Text>
                         </View>
                         <View style={styles.controls}>

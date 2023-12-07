@@ -6,8 +6,8 @@ import { StyleSheet, ScrollView, Text, View, TouchableOpacity, TextInput } from 
 import Constants from 'expo-constants'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../../context/AuthContext";
-
-
+import format from "date-fns/format";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 export const BoxSales = ({navigation}) => {
   const [sales, setSales] = useState([])
   const [searchData, setSearchData] = useState("")   
@@ -51,7 +51,9 @@ export const BoxSales = ({navigation}) => {
     </View>
     {
       sales && sales.length === 0 ? (
-        <Text>No se encontraron resultados</Text>
+        <View style={styles.controls}>
+          <Text>No se encontraron resultados</Text>
+        </View>
       ):(
         filterSales && filterSales.length === 0 ? (
             <Text>No se encontró {searchData}</Text>
@@ -62,14 +64,14 @@ export const BoxSales = ({navigation}) => {
                   <View style={styles.flex1}>
                     <Text style={styles.text}>Cliente: {sale.client}</Text>
                     <Text style={styles.text}>Factura: {sale.invoice_number}</Text>
-                    {/* <Text style={styles.text}>Fecha: {format(new Date(sale.sale_date), 'dd-MM-yyyy').replace(/-/g, '/')}</Text> */}
+                    <Text style={styles.text}>Fecha: {format(new Date(sale.sale_date), 'dd-MM-yyyy').replace(/-/g, '/')}</Text>
                   </View>
                   <View style={styles.flex}>
                     <Text style={styles.text}>Ordenes: {sale.amount_order}</Text>
-                    {/* <Text style={styles.text}>Total: ${sale.total.toLocaleString('en-US')}</Text> */}
+                    <Text style={styles.text}>Total: ${sale.total.toLocaleString('en-US')}</Text>
                   </View>
                   <View style={styles.icon}>
-                    {/* <Ionicons name="ios-arrow-forward" size={18} color="gray" marginRight="10px"/> */}
+                    <Ionicons name="ios-arrow-forward" size={18} color="gray" marginRight="10px"/>
                   </View>
                 </View>
               </TouchableOpacity>    

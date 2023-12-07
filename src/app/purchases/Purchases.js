@@ -3,8 +3,8 @@ import { RoutesApi } from "../../models/routesApi";
 import { StyleSheet, ScrollView, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { format } from 'date-fns';
 import { Ionicons } from '@expo/vector-icons';
-import { AuthContext } from "../../context/AuthContext";
 import HeaderModule from "./components/HeaderModule";
+import { AuthContext } from "../../context/AuthContext";
 
 export const BoxPurchases = ({navigation}) => {
   const [purchases, setPurchases] = useState([])  
@@ -51,10 +51,14 @@ export const BoxPurchases = ({navigation}) => {
       </View>
     {
       purchases && purchases.length === 0 ? (
-        <Text>No se encontraron resultados</Text>
+        <View style={styles.controls}>
+          <Text>No se encontraron resultados</Text>
+        </View>
       ):(
         filterPurchases && filterPurchases.length === 0 ? (
+          <View style={styles.controls}>
             <Text>No se encontró {searchData}</Text>
+          </View>
           ):(
             filterPurchases && filterPurchases.map((purchase) => (
               <TouchableOpacity key={purchase.id} onPress={() => handlePurchaseClick(purchase.id)} style={{paddingHorizontal: 15}}>
@@ -62,11 +66,11 @@ export const BoxPurchases = ({navigation}) => {
                   <View style={styles.flex1}>
                     <Text style={styles.text}>Factura: {purchase.invoice_number}</Text>
                     <Text style={styles.text}>Proveedor: {purchase.provider}</Text>
-                    {/* <Text style={styles.text}>Fecha: {format(new Date(purchase.purchase_date), 'dd-MM-yyyy').replace(/-/g, '/')}</Text> */}
+                    <Text style={styles.text}>Fecha: {format(new Date(purchase.purchase_date), 'dd-MM-yyyy').replace(/-/g, '/')}</Text>
                   </View>
                   <View style={styles.flex}>
                     <Text style={styles.text}>Ordenes: {purchase.amount_order}</Text>
-                    {/* <Text style={styles.text}>Total: ${purchase.total.toLocaleString('en-US')}</Text> */}
+                    <Text style={styles.text}>Total: ${purchase.total.toLocaleString('en-US')}</Text>
                   </View>
                   <View style={styles.icon}>
                     <Ionicons name="ios-arrow-forward" size={18} color="gray" marginRight="10px"/>

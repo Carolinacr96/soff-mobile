@@ -96,6 +96,7 @@ export default function ChangePassword({navigation}) {
                         <View style={styles.controlsCheck}>
                         <BouncyCheckbox
                             size={17}
+                            isChecked={securityPassword}
                             fillColor="#2563eb"
                             unfillColor="white"
                             iconStyle={{ borderColor: "red" }}

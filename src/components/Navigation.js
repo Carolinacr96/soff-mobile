@@ -2,7 +2,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../app/login/Login";
 import Sales from "../app/sales/Sales"
-import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Splash from "../app/splash/Splash";
 import RecoverPassword from "../app/recover-password/RecoverPassword"
@@ -10,20 +9,25 @@ import ConfirmCode from "../app/confirm-code/ConfirmCode";
 import ChangePassword from "../app/change-password/ChangePassword";
 import { BoxSales } from "../app/sales/components/BoxSales";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {ChartPieIcon, BanknotesIcon, Cog6ToothIcon,  LockClosedIcon, ArrowLongRightIcon, ChevronDownIcon,BriefcaseIcon, UserGroupIcon, SwatchIcon, ShoppingBagIcon, CakeIcon} from '@heroicons/react/24/outline'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SeeDetailSale } from "../app/sales/SaleDetail";
 import { BoxPurchases } from "../app/purchases/Purchases";
 import { SeeDetailPurchase } from "../app/purchases/components/SeeDetail";
 import { Notifications } from "../app/notifications/Notifications";
+import Dashboard from "../app/dashboard/Dashboard";
+import { TouchableOpacity, Text, Button } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import { useContext } from "react";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator()
 
 function NavigationTabs() {
+    const {logout} = useContext(AuthContext)
+
     return (
     <Tab.Navigator
-    initialRouteName="Ventas"
+    initialRouteName="Dashboard"
     screenOptions={({ route }) => ({
         
             tabBarIcon: ({ focused, color, size }) => {
@@ -37,6 +41,8 @@ function NavigationTabs() {
                     iconName = focused ? 'ios-cart' : 'ios-cart-outline';
                 } else if (route.name === 'Notificaciones'){
                     iconName = focused ? 'ios-notifications' : 'notifications-outline';
+                } else if (route.name === 'Dashboard'){
+                    iconName = focused ? 'ios-speedometer':'ios-speedometer-outline'
                 }
 
                 // You can return any component that you like here!
@@ -47,19 +53,57 @@ function NavigationTabs() {
     })}
     >
         <Tab.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{
+                headerRight: () => (
+                <TouchableOpacity style={{marginRight:15}} onPress={() => {
+                    logout()
+                }}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
+                ),
+              }}
+        />
+        <Tab.Screen
             name="Ventas"
             component={BoxSales}
-         
+            options={{
+                headerRight: () => (
+                <TouchableOpacity style={{marginRight:15}} onPress={() => {
+                    logout()
+                }}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
+                ),
+              }}
         />
         <Tab.Screen
             name="Compras"
             component={BoxPurchases}
+            options={{
+                headerRight: () => (
+                <TouchableOpacity style={{marginRight:15}} onPress={() => {
+                    logout()
+                }}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
+                ),
+              }}
         />
-         <Tab.Screen
+        <Tab.Screen
             name="Notificaciones"
             component={Notifications}
+            options={{
+                headerRight: () => (
+                <TouchableOpacity style={{marginRight:15}} onPress={() => {
+                    logout()
+                }}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
+                ),
+              }}
         />
-        {/* <Tab.Screen name="Compras" component={Sales} options={{headerTitle: 'Compras'}}/> */}
     </Tab.Navigator>
     )
 }
@@ -84,9 +128,9 @@ export default function Navigation() {
                 (
                     <>
                         <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
-                        <Stack.Screen name="ChangePassword" component={ChangePassword} options={{headerShown: false}}/>
                         <Stack.Screen name="RecoverPassword" component={RecoverPassword} options={{headerShown: false}} />
                         <Stack.Screen name="ConfirmCode" component={ConfirmCode} options={{headerShown: false}}/>
+                        <Stack.Screen name="ChangePassword" component={ChangePassword} options={{headerShown: false}}/>
                     </>
                 )
             }

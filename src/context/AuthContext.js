@@ -25,7 +25,7 @@ export const AuthProvider = ({children}) => {
     const login = async (email, password) => {
         setIsLoading(true)
         const urlEncode = `grant_type=&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&scope=&client_id=&client_secret=`
-        axios.post(`${RoutesApi.AUTH}/login`, urlEncode, {
+        return axios.post(`${RoutesApi.AUTH}/login`, urlEncode, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'accept': 'application/json'
@@ -36,13 +36,13 @@ export const AuthProvider = ({children}) => {
             if(userInfo !== undefined){
                 AsyncStorage.setItem('userInfo', JSON.stringify(userInfo))
             }
-            showToast()
             setIsLoading(false)
         }).catch((error) => {
             setIsLoading(false)
-            showToast()
-            console.log(error.response.data)
+            return error.response.data
         })
+
+       
     }
 
     const recoverPassword = async (email) => {

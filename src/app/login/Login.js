@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { AuthContext } from '../../context/AuthContext'
 import Spinner from 'react-native-loading-spinner-overlay';
-
+import { getValidationErrors } from '../../utilities/get-validation-error'
 
 
 const LoginSchema = Yup.object().shape({
@@ -22,6 +22,8 @@ export default function Login({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const {login, isLoading, userInfo} = useContext(AuthContext)
+    const [error, setError]= useState('')
+    const [success, setSuccess] = useState(false)
 
     return (
         <View style={styles.fill} >
@@ -35,11 +37,21 @@ export default function Login({navigation}) {
                 validationSchema={LoginSchema}
                 onSubmit={async (values) => {
                     const result = await login(values.email, values.password)
-                    console.log(result)
+                    if(result != undefined && result.access_token != undefined){
+                        setSuccess(true)
+                    }else{
+                        setError(result.detail)
+                    }
                 }}
             >
                 {({handleBlur, handleChange, handleSubmit, values, errors, touched}) => (
                     <View>
+                        <View style={error ? styles.controls: {display:'none'}}>
+                            <Text style={{color: 'red', fontStyle: 'italic', fontSize: 12}}>{getValidationErrors(error) ? getValidationErrors(error).message : ''}</Text>
+                        </View>
+                        <View style={success === true ? styles.controls : {display:'none'}}>
+                            <Text style={{color: 'green', fontSize: 12}}>{success ? 'Se ha confirmado el codigo correctamente!': ''}</Text>
+                        </View>
                         <View style={styles.controls}>
                             <Text style={styles.labels}>Correo Electrónico</Text>
                             <TextInput
