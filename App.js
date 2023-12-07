@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Navigation from './src/components/Navigation';
+import { AuthProvider } from './src/context/AuthContext';
+import SwrProvider from './src/context/SwrContext';
+import { AxiosInterceptors } from './src/interceptors/axios-interceptor';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hola, desde la App móvil de SOFF!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SwrProvider>
+      <AuthProvider>
+        <StatusBar backgroundColor='#2563eb' />
+        <Navigation />
+      </AuthProvider>
+    </SwrProvider>
   );
 }
 
